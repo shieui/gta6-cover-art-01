@@ -1,0 +1,151 @@
+@font-face {
+  font-family: 'Anton';
+  src: url('./fonts/Anton-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: dark;
+  --bg: #12081f;
+  --panel: #1d1030;
+  --panel-2: #261640;
+  --line: #3d2a5e;
+  --text: #f4eefc;
+  --muted: #b9a8d6;
+  --pink: #ff2975;
+  --amber: #ffd319;
+  --cyan: #00f0ff;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  background: radial-gradient(1200px 700px at 80% -10%, #3b1157 0%, var(--bg) 55%);
+  color: var(--text);
+  font: 15px/1.45 system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+.top { max-width: 1240px; margin: 0 auto; padding: 28px 24px 4px; }
+.top h1 {
+  margin: 0;
+  font-family: 'Anton', 'Arial Narrow', sans-serif;
+  font-size: 44px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, var(--amber), var(--pink) 55%, var(--cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.top p { margin: 6px 0 0; color: var(--muted); }
+
+.app {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 20px 24px 32px;
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+}
+
+.controls { width: 340px; flex: none; display: flex; flex-direction: column; gap: 16px; }
+.controls fieldset {
+  margin: 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+}
+.controls legend {
+  padding: 0 8px;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--amber);
+}
+.controls label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 13px; margin-top: 10px; }
+.controls label:first-of-type { margin-top: 0; }
+.controls input[type=text], .controls select {
+  font: inherit;
+  color: var(--text);
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 9px 10px;
+}
+.controls input[type=file] { font: inherit; font-size: 13px; }
+.controls input[type=range] { accent-color: var(--pink); width: 100%; }
+
+.row { display: flex; flex-wrap: wrap; gap: 8px; }
+.row button {
+  flex: 1 1 auto;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel-2);
+  color: var(--text);
+  cursor: pointer;
+}
+.row button[aria-pressed="true"] {
+  border-color: var(--pink);
+  background: #3a1230;
+  color: #fff;
+  box-shadow: 0 0 0 1px var(--pink) inset;
+}
+.row button:hover { border-color: var(--pink); }
+
+.sliders label { margin-top: 12px; }
+.sliders output { font-weight: 400; color: var(--muted); font-size: 12px; }
+
+button {
+  font: inherit;
+  font-weight: 700;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel-2);
+  color: var(--text);
+  cursor: pointer;
+}
+button:hover { border-color: var(--pink); }
+button.primary {
+  width: 100%;
+  margin-top: 12px;
+  padding: 13px;
+  border: 0;
+  font-size: 16px;
+  color: #1a0512;
+  background: linear-gradient(90deg, var(--amber), var(--pink));
+}
+#status { margin: 10px 0 0; min-height: 1.4em; color: var(--muted); font-size: 13px; }
+
+.preview { flex: 1; min-width: 0; display: flex; justify-content: center; }
+.preview canvas {
+  width: min(100%, 78vh);
+  height: auto; /* intrinsic canvas ratio keeps the cover's shape */
+  border-radius: 6px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+/* Screenshot scenes: hide the editor, show only the cover, edge to edge. */
+body.shot-cover { background: #000; }
+body.shot-cover .top, body.shot-cover .controls { display: none; }
+body.shot-cover .app { max-width: none; margin: 0; padding: 0; }
+body.shot-cover .preview { display: block; }
+body.shot-cover .preview canvas {
+  width: 100vw;
+  height: 100vh;
+  object-fit: contain;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+@media (max-width: 860px) {
+  .app { flex-direction: column; }
+  .controls { width: 100%; }
+  .top h1 { font-size: 34px; }
+}

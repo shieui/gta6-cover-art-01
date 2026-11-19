@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neon Cover Studio — GTA-style cover art maker</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="top">
+  <h1>Neon Cover Studio</h1>
+  <p>Turn your photos into poster-style cover art. Photos stay on your machine — nothing is uploaded.</p>
+</header>
+<main class="app">
+  <section class="controls" id="controls" aria-label="Cover controls">
+    <fieldset>
+      <legend>1 · Layout</legend>
+      <div class="row" id="layoutRow"></div>
+    </fieldset>
+    <fieldset>
+      <legend>2 · Photos</legend>
+      <div class="row" id="panelTabs" role="tablist" aria-label="Choose a panel to edit"></div>
+      <label>Photo for this panel
+        <input id="photoFile" type="file" accept="image/*">
+      </label>
+      <label>Or use a sample
+        <select id="photoSample">
+          <option value="">Keep current photo</option>
+          <option value="samples/sunset-skyline.jpg">Sunset skyline</option>
+          <option value="samples/neon-street.jpg">Neon street</option>
+          <option value="samples/beach-pier.jpg">Beach pier</option>
+        </select>
+      </label>
+      <div class="sliders">
+        <label>Zoom <input id="zoom" type="range" min="1" max="2.5" step="0.01" value="1"><output id="zoomOut">1.00×</output></label>
+        <label>Move left / right <input id="dx" type="range" min="-0.3" max="0.3" step="0.01" value="0"><output id="dxOut">0</output></label>
+        <label>Move up / down <input id="dy" type="range" min="-0.3" max="0.3" step="0.01" value="0"><output id="dyOut">0</output></label>
+      </div>
+      <button id="applyAll" type="button">Use this photo in all three panels</button>
+    </fieldset>
+    <fieldset>
+      <legend>3 · Words &amp; grade</legend>
+      <label>Caption <input id="caption" type="text" maxlength="48" value="SUNSET HEIST"></label>
+      <label>Subtitle <input id="subtitle" type="text" maxlength="48" value="OCEAN DRIVE · 2026"></label>
+      <div class="row" id="gradeRow"></div>
+    </fieldset>
+    <fieldset>
+      <legend>4 · Size &amp; export</legend>
+      <div class="row" id="sizeRow"></div>
+      <button id="export" type="button" class="primary">Export PNG</button>
+      <p id="status" role="status"></p>
+    </fieldset>
+  </section>
+  <section class="preview" aria-label="Live preview">
+    <canvas id="cover" width="1080" height="1080"></canvas>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
